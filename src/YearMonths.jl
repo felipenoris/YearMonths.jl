@@ -1,4 +1,6 @@
 
+__precompile__(true)
+
 """
 Package that exports the type `YearMonth`.
 """
