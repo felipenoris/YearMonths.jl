@@ -42,3 +42,7 @@ ym2 = YearMonth(2019, 1)
 @test !isequal(ym1, ym2)
 @test isless(ym1, ym2)
 @test !isless(ym2, ym1)
+
+dt = Date(2018, 12, 10)
+@test YearMonth(dt) == ym1
+@test_throws ErrorException YearMonth("2018-122")
