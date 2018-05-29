@@ -48,7 +48,7 @@ YearMonth(ym::Integer) = YearMonth(string(ym))
 
 Base.:(==)(ym1::YearMonth, ym2::YearMonth) = ym1.y == ym2.y && ym1.m == ym2.m
 Base.hash(ym::YearMonth) = hash(ym.y) + hash(ym.m)
-Base.show(io::IO, ym::YearMonth) = print(io, "YearMonth(\"", year(ym), month(ym), "\")")
+Base.show(io::IO, ym::YearMonth) = print(io, "YearMonth(\"", year(ym), lpad(month(ym), 2, "0"), "\")")
 Dates.year(ym::YearMonth) = ym.y
 Dates.month(ym::YearMonth) = ym.m
 Dates.yearmonth(ym::YearMonth) = (ym.y, ym.m)
