@@ -46,3 +46,7 @@ ym2 = YearMonth(2019, 1)
 dt = Date(2018, 12, 10)
 @test YearMonth(dt) == ym1
 @test_throws ErrorException YearMonth("2018-122")
+
+ym = YearMonth(2018, 5)
+@test firstdayofmonth(ym) == Date(2018, 5, 1)
+@test lastdayofmonth(ym) == Date(2018, 5, 31)

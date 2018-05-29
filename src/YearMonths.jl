@@ -73,4 +73,7 @@ Base.:(<=)(ym1::YearMonth, ym2::YearMonth) = ym1 == ym2 || ym1 < ym2
 Base.isequal(ym1::YearMonth, ym2::YearMonth) = ym1.y == ym2.y && ym1.m == ym2.m
 Base.isless(ym1::YearMonth, ym2::YearMonth) = isless(Date(ym1), Date(ym2))
 
+Dates.firstdayofmonth(ym::YearMonth) = Date(ym)
+Dates.lastdayofmonth(ym::YearMonth) = lastdayofmonth(Date(ym))
+
 end # module YearMonths
