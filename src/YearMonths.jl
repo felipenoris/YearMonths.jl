@@ -59,7 +59,7 @@ Dates.yearmonth(ym::YearMonth) = (ym.y, ym.m)
 """
 	Date(ym::YearMonth)
 
-Creates a date base on the first day of the month.
+Creates a date based on the first day of the month.
 """
 Dates.Date(ym::YearMonth) = Date(yearmonth(ym)...)
 
