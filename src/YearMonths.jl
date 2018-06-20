@@ -2,7 +2,7 @@
 __precompile__(true)
 
 """
-Package that exports the type `YearMonth`.
+Provides YearMonth type.
 """
 module YearMonths
 
@@ -29,13 +29,16 @@ end
 
 YearMonth(dt::Date) = YearMonth(Dates.yearmonth(dt)...)
 
+const RGX_YYYY_MM = r"^[0-9][0-9][0-9][0-9]-[0-9][0-9]$" # yyyy-mm
+const RGX_YYYYMM = r"^[0-9][0-9][0-9][0-9][0-9][0-9]$" # yyyymm
+
 function YearMonth(str::AbstractString)
 	@assert !isempty(str) "Cannot convert empty string to YearMonth."
-	if ismatch(r"^[0-9][0-9][0-9][0-9]-[0-9][0-9]$", str) # yyyy-mm
+	if ismatch(RGX_YYYY_MM, str)
 		y = parse(Int, str[1:4])
 		m = parse(Int, str[6:7])
 		return YearMonth(y, m)
-	elseif ismatch(r"^[0-9][0-9][0-9][0-9][0-9][0-9]$", str) # yyyymm
+	elseif ismatch(RGX_YYYYMM, str)
 		y = parse(Int, str[1:4])
 		m = parse(Int, str[5:6])
 		return YearMonth(y, m)
