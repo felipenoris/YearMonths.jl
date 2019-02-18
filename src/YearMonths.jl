@@ -6,7 +6,14 @@ Provides YearMonth type.
 """
 module YearMonths
 
-using Base.Dates
+@static if VERSION < v"0.7"
+	using Base.Dates
+
+	occursin(r::Regex, s::AbstractString) = ismatch(r, s)
+else
+	using Dates
+end
+
 export YearMonth
 
 """
@@ -34,11 +41,11 @@ const RGX_YYYYMM = r"^[0-9][0-9][0-9][0-9][0-9][0-9]$" # yyyymm
 
 function YearMonth(str::AbstractString)
 	@assert !isempty(str) "Cannot convert empty string to YearMonth."
-	if ismatch(RGX_YYYY_MM, str)
+	if occursin(RGX_YYYY_MM, str)
 		y = parse(Int, str[1:4])
 		m = parse(Int, str[6:7])
 		return YearMonth(y, m)
-	elseif ismatch(RGX_YYYYMM, str)
+	elseif occursin(RGX_YYYYMM, str)
 		y = parse(Int, str[1:4])
 		m = parse(Int, str[5:6])
 		return YearMonth(y, m)

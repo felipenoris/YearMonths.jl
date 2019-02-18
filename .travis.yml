@@ -3,8 +3,9 @@ os:
     - linux
 julia:
     - 0.6
+    - 1.0
+    - 1.1
 notifications:
     email: false
 after_success:
-  - julia -e 'Pkg.add("Coverage"); cd(Pkg.dir("YearMonths")); using Coverage; Coveralls.submit(Coveralls.process_folder())'
-  - julia -e 'cd(Pkg.dir("YearMonths")); using Coverage; Codecov.submit(Codecov.process_folder())'
+  - julia -e 'ENV["TRAVIS_JULIA_VERSION"] != "1.0" && ENV["TRAVIS_OS_NAME"] != "osx" && exit(); using Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
