@@ -7,11 +7,11 @@ Provides YearMonth type.
 module YearMonths
 
 @static if VERSION < v"0.7"
-	using Base.Dates
+    using Base.Dates
 
-	occursin(r::Regex, s::AbstractString) = ismatch(r, s)
+    occursin(r::Regex, s::AbstractString) = ismatch(r, s)
 else
-	using Dates
+    using Dates
 end
 
 export YearMonth
@@ -25,13 +25,13 @@ julia> ym = YearMonth(2018, 12) # represents December of year 2018.
 ```
 """
 struct YearMonth
-	y::Int
-	m::Int
+    y::Int
+    m::Int
 
-	function YearMonth(y::Int, m::Int)
-		@assert 1 <= m && m <= 12 "Month should be between 1 and 12."
-		return new(y, m)
-	end
+    function YearMonth(y::Int, m::Int)
+        @assert 1 <= m && m <= 12 "Month should be between 1 and 12."
+        return new(y, m)
+    end
 end
 
 YearMonth(dt::Date) = YearMonth(Dates.yearmonth(dt)...)
@@ -40,18 +40,18 @@ const RGX_YYYY_MM = r"^[0-9][0-9][0-9][0-9]-[0-9][0-9]$" # yyyy-mm
 const RGX_YYYYMM = r"^[0-9][0-9][0-9][0-9][0-9][0-9]$" # yyyymm
 
 function YearMonth(str::AbstractString)
-	@assert !isempty(str) "Cannot convert empty string to YearMonth."
-	if occursin(RGX_YYYY_MM, str)
-		y = parse(Int, str[1:4])
-		m = parse(Int, str[6:7])
-		return YearMonth(y, m)
-	elseif occursin(RGX_YYYYMM, str)
-		y = parse(Int, str[1:4])
-		m = parse(Int, str[5:6])
-		return YearMonth(y, m)
-	else
-		error("Invalid format to create a YearMonth: $str.")
-	end
+    @assert !isempty(str) "Cannot convert empty string to YearMonth."
+    if occursin(RGX_YYYY_MM, str)
+        y = parse(Int, str[1:4])
+        m = parse(Int, str[6:7])
+        return YearMonth(y, m)
+    elseif occursin(RGX_YYYYMM, str)
+        y = parse(Int, str[1:4])
+        m = parse(Int, str[5:6])
+        return YearMonth(y, m)
+    else
+        error("Invalid format to create a YearMonth: $str.")
+    end
 end
 
 YearMonth(ym::Integer) = YearMonth(string(ym))
@@ -64,7 +64,7 @@ Dates.month(ym::YearMonth) = ym.m
 Dates.yearmonth(ym::YearMonth) = (ym.y, ym.m)
 
 """
-	Date(ym::YearMonth)
+    Date(ym::YearMonth)
 
 Creates a date based on the first day of the month.
 """
