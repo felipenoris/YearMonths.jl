@@ -21,6 +21,7 @@ ym2 = YearMonth(2018, 11)
 
 @test ym == YearMonth("201810")
 @test ym == YearMonth("2018-10")
+@test string(ym) == "2018-10"
 @test ym == YearMonth(201810)
 @test ym != YearMonth(2018, 11)
 @test Date(ym) == Date(2018, 10)

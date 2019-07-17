@@ -58,7 +58,6 @@ YearMonth(ym::Integer) = YearMonth(string(ym))
 
 Base.:(==)(ym1::YearMonth, ym2::YearMonth) = ym1.y == ym2.y && ym1.m == ym2.m
 Base.hash(ym::YearMonth) = hash(ym.y) + hash(ym.m)
-Base.show(io::IO, ym::YearMonth) = print(io, "YearMonth(\"", year(ym), lpad(month(ym), 2, "0"), "\")")
 Dates.year(ym::YearMonth) = ym.y
 Dates.month(ym::YearMonth) = ym.m
 Dates.yearmonth(ym::YearMonth) = (ym.y, ym.m)
@@ -85,5 +84,8 @@ Base.isless(ym1::YearMonth, ym2::YearMonth) = isless(Date(ym1), Date(ym2))
 
 Dates.firstdayofmonth(ym::YearMonth) = Date(ym)
 Dates.lastdayofmonth(ym::YearMonth) = lastdayofmonth(Date(ym))
+
+Base.string(ym::YearMonth) = "$(year(ym))-$(lpad(month(ym), 2, "0"))"
+Base.show(io::IO, ym::YearMonth) = print(io, "YearMonth(\"", string(ym), "\")")
 
 end # module YearMonths
