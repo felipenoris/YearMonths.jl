@@ -26,8 +26,8 @@ end
 
 YearMonth(dt::Date) = YearMonth(Dates.yearmonth(dt)...)
 
-const RGX_YYYY_MM = r"^[0-9][0-9][0-9][0-9]-[0-9][0-9]$" # yyyy-mm
-const RGX_YYYYMM = r"^[0-9][0-9][0-9][0-9][0-9][0-9]$" # yyyymm
+const RGX_YYYY_MM = r"^[0-9]+-[0-9][0-9]$" # yyyy-mm
+const RGX_YYYYMM = r"^[0-9]+[0-9][0-9]$" # yyyymm
 
 """
     YearMonth(str::AbstractString)
@@ -37,12 +37,12 @@ Accepts two formats: "yyyy-mm" or "yyyymm".
 function YearMonth(str::AbstractString)
     @assert !isempty(str) "Cannot convert empty string to YearMonth."
     if occursin(RGX_YYYY_MM, str)
-        y = parse(Int, str[1:4])
-        m = parse(Int, str[6:7])
+        y = parse(Int, str[1:(end-3)])
+        m = parse(Int, str[(end-1):end])
         return YearMonth(y, m)
     elseif occursin(RGX_YYYYMM, str)
-        y = parse(Int, str[1:4])
-        m = parse(Int, str[5:6])
+        y = parse(Int, str[1:(end-2)])
+        m = parse(Int, str[(end-1):end])
         return YearMonth(y, m)
     else
         error("Invalid format to create a YearMonth: $str.")

@@ -24,6 +24,11 @@ using YearMonths, Test, Dates
     @test hash(ym) != hash(ym2)
 
     @test string(YearMonth(0xff, 1)) == "255-01"
+    @test string(YearMonth("20000-12")) == "20000-12"
+    @test string(YearMonth("2000012")) == "20000-12"
+    @test string(YearMonth("2-01")) == "2-01"
+    @test string(YearMonth("201")) == "2-01"
+    @test_throws ErrorException YearMonth("10")
 end
 
 @testset "Math" begin
