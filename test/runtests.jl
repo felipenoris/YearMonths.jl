@@ -63,3 +63,7 @@ end
     @test firstdayofmonth(ym) == Date(2018, 5, 1)
     @test lastdayofmonth(ym) == Date(2018, 5, 31)
 end
+
+@testset "Tutorial" begin
+    include("tutorial.jl")
+end
