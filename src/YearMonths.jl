@@ -1,18 +1,8 @@
 
-__precompile__(true)
-
-"""
-Provides YearMonth type.
-"""
+"Provides `YearMonth` type."
 module YearMonths
 
-@static if VERSION < v"0.7"
-    using Base.Dates
-
-    occursin(r::Regex, s::AbstractString) = ismatch(r, s)
-else
-    using Dates
-end
+using Dates
 
 export YearMonth
 
@@ -39,6 +29,11 @@ YearMonth(dt::Date) = YearMonth(Dates.yearmonth(dt)...)
 const RGX_YYYY_MM = r"^[0-9][0-9][0-9][0-9]-[0-9][0-9]$" # yyyy-mm
 const RGX_YYYYMM = r"^[0-9][0-9][0-9][0-9][0-9][0-9]$" # yyyymm
 
+"""
+    YearMonth(str::AbstractString)
+
+Accepts two formats: "yyyy-mm" or "yyyymm".
+"""
 function YearMonth(str::AbstractString)
     @assert !isempty(str) "Cannot convert empty string to YearMonth."
     if occursin(RGX_YYYY_MM, str)
@@ -55,9 +50,8 @@ function YearMonth(str::AbstractString)
 end
 
 YearMonth(ym::Integer) = YearMonth(string(ym))
+YearMonth(y::Integer, m::Integer) = YearMonth(Int(y), Int(m))
 
-Base.:(==)(ym1::YearMonth, ym2::YearMonth) = ym1.y == ym2.y && ym1.m == ym2.m
-Base.hash(ym::YearMonth) = hash(ym.y) + hash(ym.m)
 Dates.year(ym::YearMonth) = ym.y
 Dates.month(ym::YearMonth) = ym.m
 Dates.yearmonth(ym::YearMonth) = (ym.y, ym.m)
