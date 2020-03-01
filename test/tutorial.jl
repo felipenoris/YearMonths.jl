@@ -1,4 +1,4 @@
-using Test
+using Test, Dates
 
 # will export `YearMonth` type
 using YearMonths
@@ -23,8 +23,6 @@ ym2 = YearMonth(2019, 12)
 @test ym1 > ym2
 
 # Basic `Dates` API
-using Dates
-
 ym = YearMonth(2018, 5)
 @test firstdayofmonth(ym) == Date(2018, 5, 1)
 @test lastdayofmonth(ym) == Date(2018, 5, 31)

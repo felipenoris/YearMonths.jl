@@ -16,7 +16,7 @@ Provides `YearMonth` type for the Julia language.
 # Usage
 
 ```julia
-using Test
+using Test, Dates
 
 # will export `YearMonth` type
 using YearMonths
@@ -27,6 +27,7 @@ ym = YearMonth(2018, 12)
 @test ym == YearMonth("201812")  # accepts yyyymm format
 
 # algebra
+
 @test ym - Month(1) == YearMonth(2018, 11)
 @test ym - Year(1) == YearMonth(2017, 12)
 @test ym + Month(1) == YearMonth(2019, 1)
@@ -41,8 +42,6 @@ ym2 = YearMonth(2019, 12)
 @test ym1 > ym2
 
 # Basic `Dates` API
-using Dates
-
 ym = YearMonth(2018, 5)
 @test firstdayofmonth(ym) == Date(2018, 5, 1)
 @test lastdayofmonth(ym) == Date(2018, 5, 31)
