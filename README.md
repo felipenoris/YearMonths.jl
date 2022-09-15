@@ -2,12 +2,12 @@
 # YearMonths.jl
 
 [![License][license-img]](LICENSE)
-[![travis][travis-img]][travis-url]
+[![CI][ci-img]][ci-url]
 [![codecov][codecov-img]][codecov-url]
 
 [license-img]: http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[travis-img]: https://img.shields.io/travis/felipenoris/YearMonths.jl/master.svg?logo=travis&label=Linux+/+macOS&style=flat-square
-[travis-url]: https://travis-ci.org/felipenoris/YearMonths.jl
+[ci-img]: https://github.com/felipenoris/YearMonths.jl/workflows/CI/badge.svg
+[ci-url]: https://github.com/felipenoris/YearMonths.jl/actions?query=workflow%3ACI
 [codecov-img]: https://img.shields.io/codecov/c/github/felipenoris/YearMonths.jl/master.svg?label=codecov&style=flat-square
 [codecov-url]: http://codecov.io/github/felipenoris/YearMonths.jl?branch=master
 
