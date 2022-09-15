@@ -19,6 +19,8 @@ using YearMonths, Test, Dates
     @test ym != YearMonth(2018, 11)
     @test Date(ym) == Date(2018, 10)
     @test Date(ym) == Date(2018, 10, 1)
+    @test convert(Date, ym) == Date(2018, 10)
+    @test convert(Date, ym) == Date(2018, 10, 1)
 
     @test hash(ym) == hash(YearMonth(2018, 10))
     @test hash(ym) != hash(ym2)

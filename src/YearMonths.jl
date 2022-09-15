@@ -63,6 +63,8 @@ Creates a date based on the first day of the month.
 """
 Dates.Date(ym::YearMonth) = Date(yearmonth(ym)...)
 
+Base.convert(::Type{Date}, ym::YearMonth) = Date(ym)
+
 Base.:+(ym::YearMonth, p::Year) = YearMonth(ym.y + Dates.value(p), ym.m)
 Base.:-(ym::YearMonth, p::Year) = YearMonth(ym.y - Dates.value(p), ym.m)
 
