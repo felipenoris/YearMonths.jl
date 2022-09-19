@@ -1,7 +1,7 @@
 name = "YearMonths"
 uuid = "c2c48e9c-33cf-11e9-2c9f-bfebf9880caf"
 authors = ["Felipe Noronha <felipenoris@gmail.com>"]
-version = "1.0.1"
+version = "1.0.2-dev"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
