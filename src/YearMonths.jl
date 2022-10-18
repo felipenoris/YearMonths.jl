@@ -84,4 +84,6 @@ Dates.lastdayofmonth(ym::YearMonth) = lastdayofmonth(Date(ym))
 Base.string(ym::YearMonth) = "$(year(ym))-$(lpad(month(ym), 2, "0"))"
 Base.show(io::IO, ym::YearMonth) = print(io, "YearMonth(\"", string(ym), "\")")
 
+Base.:-(x::YearMonth, y::YearMonth) = Month(12 * (x.y - y.y) + x.m - y.m)
+
 end # module YearMonths

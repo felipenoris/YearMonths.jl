@@ -53,6 +53,16 @@ end
     @test !isequal(ym1, ym2)
     @test isless(ym1, ym2)
     @test !isless(ym2, ym1)
+
+    ym3 = YearMonth(2022, 7)
+    @test ym3 - YearMonth(2022, 7) == Month(0)
+    @test ym3 - YearMonth(2022, 8) == -Month(1)
+    @test ym3 - YearMonth(2022, 6) == Month(1)
+    @test ym3 - YearMonth(2022, 1) == Month(6)
+    @test ym3 - YearMonth(2021, 12) == Month(7)
+    @test ym3 - YearMonth(2021, 7) == Month(12)
+    @test ym3 - YearMonth(2023, 7) == -Month(12)
+    @test ym3 - YearMonth(2020, 1) == Month(30)
 end
 
 @testset "Conversions" begin

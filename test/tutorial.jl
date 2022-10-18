@@ -16,6 +16,9 @@ ym = YearMonth(2018, 12)
 @test ym + Year(1) == YearMonth(2019, 12)
 @test Year(1) + ym == YearMonth(2019, 12)
 @test ym + Month(12) == YearMonth(2019, 12)
+@test ym - YearMonth(2018, 12) == Month(0)
+@test ym - YearMonth(2019, 12) == -Month(12)
+@test ym - YearMonth(2017, 12) == Month(12)
 
 # comparison
 ym1 = YearMonth(2020, 1)
