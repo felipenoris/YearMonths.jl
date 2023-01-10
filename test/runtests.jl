@@ -63,6 +63,15 @@ end
     @test ym3 - YearMonth(2021, 7) == Month(12)
     @test ym3 - YearMonth(2023, 7) == -Month(12)
     @test ym3 - YearMonth(2020, 1) == Month(30)
+
+    effym = Vector(YearMonth(2020, 1):Year(1):YearMonth(2022, 1))
+    evalym = YearMonth(202212)
+    @test isequal(evalym .- effym, [Month(35), Month(23), Month(11)])
+    @test isequal(evalym .- effym .+ Month(1), [Month(36), Month(24), Month(12)])
+    @test isequal(evalym .- effym .+ Month(1) .+ Month(Year(1)), [Month(48), Month(36), Month(24)])
+    @test isequal(effym .+ Year(1), [YearMonth(2021, 1), YearMonth(2022, 1), YearMonth(2023, 1)])
+    @test isequal(effym .+ Month(3), [YearMonth(2020, 4), YearMonth(2021, 4), YearMonth(2022, 4)])
+    @test isequal(effym .+ Month(3) .+ Year(1), [YearMonth(2021, 4), YearMonth(2022, 4), YearMonth(2023, 4)])
 end
 
 @testset "Conversions" begin
