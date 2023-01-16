@@ -85,6 +85,9 @@ Base.string(ym::YearMonth) = "$(year(ym))-$(lpad(month(ym), 2, "0"))"
 Base.show(io::IO, ym::YearMonth) = print(io, "YearMonth(\"", string(ym), "\")")
 
 Base.:-(x::YearMonth, y::YearMonth) = Month(12 * (x.y - y.y) + x.m - y.m)
-Base.Broadcast.broadcastable(x::YearMonth) = Ref(x)
+
+@static if VERSION >= v"1.8"
+    Base.Broadcast.broadcastable(x::YearMonth) = Ref(x)
+end
 
 end # module YearMonths
