@@ -87,6 +87,10 @@ end
     @test lastdayofmonth(ym) == Date(2018, 5, 31)
 end
 
+@testset "Ranges" begin
+    @test collect(YearMonth(2022, 3):YearMonth(2023, 3)) == collect(YearMonth(2022, 3):Dates.Month(1):YearMonth(2023, 3))
+end
+
 @testset "Tutorial" begin
     include("tutorial.jl")
 end

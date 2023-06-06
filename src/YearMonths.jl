@@ -90,4 +90,6 @@ Base.:-(x::YearMonth, y::YearMonth) = Month(12 * (x.y - y.y) + x.m - y.m)
     Base.Broadcast.broadcastable(x::YearMonth) = Ref(x)
 end
 
+Base.:(:)(start::YearMonth, stop::YearMonth) = Base.:(:)(start, Dates.Month(1), stop)
+
 end # module YearMonths
