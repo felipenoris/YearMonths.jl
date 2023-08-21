@@ -85,6 +85,19 @@ end
     ym = YearMonth(2018, 5)
     @test firstdayofmonth(ym) == Date(2018, 5, 1)
     @test lastdayofmonth(ym) == Date(2018, 5, 31)
+
+    @test convert(Int, YearMonth(2010, 1)) == 201001
+    @test convert(Int, YearMonth(-2010, 1)) == -201001
+    @test convert(Int, YearMonth(2010, 12)) == 201012
+    @test convert(Int, YearMonth(-2010, 12)) == -201012
+    @test convert(Int, YearMonth(0, 1)) == 1
+    @test convert(Int, YearMonth(0, 12)) == 12
+    @test convert(Int, YearMonth(-0, 1)) == 1
+    @test convert(Int, YearMonth(-0, 12)) == 12
+    @test convert(Int, YearMonth(1, 1)) == 101
+    @test convert(Int, YearMonth(1, 12)) == 112
+    @test convert(Int, YearMonth(-1, 1)) == -101
+    @test convert(Int, YearMonth(-1, 12)) == -112
 end
 
 @testset "Ranges" begin

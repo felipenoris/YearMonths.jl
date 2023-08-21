@@ -25,6 +25,7 @@ using YearMonths
 ym = YearMonth(2018, 12)
 @test ym == YearMonth("2018-12") # accepts yyyy-mm format
 @test ym == YearMonth("201812")  # accepts yyyymm format
+@test ym == YearMonth(201812) # accepts Int
 
 # algebra
 @test ym - Month(1) == YearMonth(2018, 11)
