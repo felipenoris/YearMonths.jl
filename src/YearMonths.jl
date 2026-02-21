@@ -80,8 +80,16 @@ Base.:(<=)(ym1::YearMonth, ym2::YearMonth) = ym1 == ym2 || ym1 < ym2
 Base.isequal(ym1::YearMonth, ym2::YearMonth) = ym1.y == ym2.y && ym1.m == ym2.m
 Base.isless(ym1::YearMonth, ym2::YearMonth) = isless(Date(ym1), Date(ym2))
 
+### truncation (adjusters.jl in Dates)
+Base.trunc(ym::YearMonth, ::Type{Year}) = YearMonth(year(ym), 1)
+Base.trunc(ym::YearMonth, ::Type{Month}) = ym
+
 Dates.firstdayofmonth(ym::YearMonth) = Date(ym)
 Dates.lastdayofmonth(ym::YearMonth) = lastdayofmonth(Date(ym))
+Dates.firstdayofquarter(ym::YearMonth) = firstdayofquarter(Date(ym))
+Dates.lastdayofquarter(ym::YearMonth) = lastdayofquarter(Date(ym))
+Dates.firstdayofyear(ym::YearMonth) = firstdayofyear(Date(ym))
+Dates.lastdayofyear(ym::YearMonth) = lastdayofyear(Date(ym))
 
 Base.string(ym::YearMonth) = "$(year(ym))-$(lpad(month(ym), 2, "0"))"
 Base.show(io::IO, ym::YearMonth) = print(io, "YearMonth(\"", string(ym), "\")")

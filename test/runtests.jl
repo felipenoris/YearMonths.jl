@@ -85,6 +85,10 @@ end
     ym = YearMonth(2018, 5)
     @test firstdayofmonth(ym) == Date(2018, 5, 1)
     @test lastdayofmonth(ym) == Date(2018, 5, 31)
+    @test firstdayofquarter(ym) == Date(2018, 4, 1)
+    @test lastdayofquarter(ym) == Date(2018, 6, 30)
+    @test firstdayofyear(ym) == Date(2018, 1, 1)
+    @test lastdayofyear(ym) == Date(2018, 12, 31)
 
     @test convert(Int, YearMonth(2010, 1)) == 201001
     @test convert(Int, YearMonth(-2010, 1)) == -201001
@@ -106,4 +110,10 @@ end
 
 @testset "Tutorial" begin
     include("tutorial.jl")
+end
+
+@testset "Truncation" begin
+    ym = YearMonth(2026, 3)
+    @test trunc(ym, Year) == YearMonth(2026, 1)
+    @test trunc(ym, Month) == ym
 end
